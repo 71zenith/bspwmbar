@@ -15,10 +15,10 @@
 /* max length of active window title */
 #define TITLE_MAXSZ 50
 /* set window height */
-#define BAR_HEIGHT  24
+#define BAR_HEIGHT  33
 
 /* set font pattern for find fonts, see fonts-conf(5) */
-const char *fontname = "sans-serif:size=10";
+const char *fontname = "JetBrainsMonoNL Nerd Font:style=Regular:size=13.5";
 
 /*
  * color settings by index of color map
@@ -38,13 +38,6 @@ const char *fontname = "sans-serif:size=10";
 
 /* modules on the left */
 module_t left_modules[] = {
-	{ /* Arch logo */
-		.text = {
-			.func = text,
-			.label = "",
-			.fg = "#1793d1",
-		},
-	},
 	{ /* bspwm desktop state */
 		.desk = {
 			.func = desktops,
@@ -53,55 +46,17 @@ module_t left_modules[] = {
 			.fg_free = ALTFGCOLOR,
 		},
 	},
-	{ /* active window title */
-		.title = {
-			.func = windowtitle,
-			.maxlen   = TITLE_MAXSZ,
-			.ellipsis = "…",
-		},
-	},
 };
 
 /* modules on the right */
 module_t right_modules[] = {
-	{ /* system tray */
-		.tray = {
-			.func = systray,
-			.iconsize = 16,
+	{ /* clock */
+		.date = {
+			.func = datetime,
+			.prefix = " ",
+			.format = "%H:%M %a %d %b",
 		},
 	},
-	{ /* cpu usage */
-		.cpu = {
-			.func = cpugraph,
-			.prefix = "cpu: "
-		},
-	},
-	{ /* memory usage */
-		.mem = {
-			.func = memgraph,
-			.prefix = "mem: "
-		},
-	},
-	// { /* battery */
-	// 	.battery = {
-	// 		.func = battery,
-	// 		.prefix = " ",
-	// 		.prefix_1 = " ",
-	// 		.prefix_2 = " ",
-	// 		.prefix_3 = " ",
-	// 		.prefix_4 = " ",
-	// 		.suffix = "％",
-	// 		.path = "/sys/class/power_supply/BAT0/uevent",
-	// 	},
-	// },
-	// { /* backlight */
-	// 	.backlight = {
-	// 		.func = backlight,
-	// 		.handler = backlight_ev,
-	// 		.prefix = "盛 ",
-	// 		.suffix = "％",
-	// 	},
-	// },
 	{ /* master playback volume */
 		.vol = {
 			.func = volume,
@@ -111,27 +66,10 @@ module_t right_modules[] = {
 			.unmuted = "墳",
 		},
 	},
-	{ /* used space of root file system */
-		.fs = {
-			.func = filesystem,
-			.mountpoint = "/",
-			.prefix = " ",
-			.suffix = "％",
-		},
-	},
-	{ /* cpu temperature */
-		.thermal = {
-			.func = thermal,
-			.sensor = THERMAL_PATH,
-			.prefix = " ",
-			.suffix = "℃",
-		},
-	},
-	{ /* clock */
-		.date = {
-			.func = datetime,
-			.prefix = " ",
-			.format = "%H:%M",
+	{ /* system tray */
+		.tray = {
+			.func = systray,
+			.iconsize = 30,
 		},
 	},
 };
